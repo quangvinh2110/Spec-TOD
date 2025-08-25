@@ -23,7 +23,7 @@ def get_tokenizer(tgi_ip: str) -> str:
     return tokenizer
 
 
-tgi_ip = "http://10.254.138.189:8030"
+tgi_ip = "YOUR_TGI_ENDPOINT"
 # tokenizer = get_tokenizer(tgi_ip)
 tokenizer = AutoTokenizer.from_pretrained("/home/LFew-TOD/ckpt/lora-out-axolotl/Llama-3-8B-Instruct-64-32-2024-06-30-1percent-inputoutput/checkpoint-2988/merged")
 tokenizer.eos_token = "<|eot_id|>"
