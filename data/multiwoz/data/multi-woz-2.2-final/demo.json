@@ -1,0 +1,605 @@
+{
+    "mul0001.json": {
+        "goal": {
+            "hotel": {
+                "book": {
+                    "day": "saturday",
+                    "invalid": false,
+                    "people": "6",
+                    "pre_invalid": true,
+                    "stay": "1"
+                },
+                "fail_book": {
+                    "stay": "2"
+                },
+                "fail_info": {},
+                "info": {
+                    "internet": "no",
+                    "stars": "3",
+                    "type": "guesthouse"
+                }
+            },
+            "restaurant": {
+                "book": {
+                    "day": "saturday",
+                    "invalid": false,
+                    "people": "6",
+                    "time": "19:30"
+                },
+                "fail_book": {},
+                "fail_info": {},
+                "info": {
+                    "area": "centre",
+                    "food": "indian",
+                    "pricerange": "expensive"
+                }
+            }
+        },
+        "log": [
+            {
+                "user": "i would really like to take my client out to a nice restaurant that serves indian food .",
+                "user_delex": "i would really like to take my client out to a nice restaurant that serves indian food [value_food]",
+                "user_act": "[restaurant] food",
+                "resp": "i show [value_choice] restaurant -s that serve [value_food] food in [value_price] . what area would you like to travel to ?",
+                "nodelx_resp": "i show many restaurant -s that serve indian food in that price range . what area would you like to travel to ?",
+                "pointer": "0,0,0,1,0,0",
+                "match": "14",
+                "constraint": "[restaurant] food indian pricerange expensive",
+                "cons_delex": "[restaurant] food pricerange",
+                "sys_act": "[restaurant] [inform] choice food pricerange [request] area",
+                "turn_num": 0,
+                "turn_domain": "[restaurant]"
+            },
+            {
+                "user": "i am looking for an expensive indian restaurant in the area of centre .",
+                "user_delex": "i am looking for an [value_pricerange] [value_food] restaurant in the area of [value_area] .",
+                "user_act": "[restaurant] area food pricerange",
+                "resp": "might i recommend [value_name] ? that is an [value_price] [value_food] restaurant in the [value_area] . i can book a table for you , if you like .",
+                "nodelx_resp": "might i recommend saffron brasserie ? that is an expensive indian restaurant in the center of town . i can book a table for you , if you like .",
+                "pointer": "0,0,0,1,0,0",
+                "match": "6",
+                "constraint": "[restaurant] food indian pricerange expensive area centre",
+                "cons_delex": "[restaurant] food pricerange area",
+                "sys_act": "[restaurant] [recommend] area food name pricerange [offerbook]",
+                "turn_num": 1,
+                "turn_domain": "[restaurant]"
+            },
+            {
+                "user": "sure thing , please book for 6 people at 19:30 on saturday .",
+                "user_delex": "sure thing , please book for 6 people at 19:30 on saturday [value_bookday]",
+                "user_act": "[restaurant]",
+                "resp": "booking was successful . the table will be reserved for 15 minutes . your reference number is : [value_reference] .",
+                "nodelx_resp": "booking was successful . the table will be reserved for 15 minutes . your reference number is : rf00jufq .",
+                "pointer": "0,1,0,0,0,1",
+                "match": "1",
+                "constraint": "[restaurant] food indian pricerange expensive area centre name saffron brasserie day saturday people 6 time 19:30",
+                "cons_delex": "[restaurant] food pricerange area name day people time",
+                "sys_act": "[restaurant] [offerbooked] reference",
+                "turn_num": 2,
+                "turn_domain": "[restaurant]"
+            },
+            {
+                "user": "okay great ! thank you so much . could you also help me find a 3 star hotel in the area . i do n't need wifi either .",
+                "user_delex": "okay great ! thank you so much . could you also help me find [value_stars] 3 star hotel in the area . i do n't need wifi either .",
+                "user_act": "[hotel] internet stars",
+                "resp": "[value_name] is in the [value_area] and is [value_price] . it has [value_stars] stars and no internet or parking . would you like to book a room ?",
+                "nodelx_resp": "the alpha - milton guest house is in the north and is moderate -ly priced . it has 3 stars and no internet or parking . would you like to book a room ?",
+                "pointer": "0,1,0,0,0,0",
+                "match": "1",
+                "constraint": "[hotel] internet no stars 3 [restaurant] food indian pricerange expensive area centre name saffron brasserie day saturday people 6 time 19:30",
+                "cons_delex": "[hotel] internet stars [restaurant] food pricerange area name day people time",
+                "sys_act": "[hotel] [inform] area internet name parking pricerange stars [offerbook]",
+                "turn_num": 3,
+                "turn_domain": "[hotel]"
+            },
+            {
+                "user": "that sounds great . please book that now .",
+                "user_delex": "that sounds great . please book that now .",
+                "user_act": "[hotel] internet parking",
+                "resp": "may i ask how many people are in your group ?",
+                "nodelx_resp": "may i ask how many people are in your group ?",
+                "pointer": "0,1,0,0,0,0",
+                "match": "1",
+                "constraint": "[hotel] internet no stars 3 name alpha - milton guest house [restaurant] food indian pricerange expensive area centre name saffron brasserie day saturday people 6 time 19:30",
+                "cons_delex": "[hotel] internet stars name [restaurant] food pricerange area name day people time",
+                "sys_act": "[hotel] [request] bookpeople",
+                "turn_num": 4,
+                "turn_domain": "[hotel]"
+            },
+            {
+                "user": "i have 6 people in my group .",
+                "user_delex": "i have [value_bookpeople] people in my group .",
+                "user_act": "[hotel]",
+                "resp": "how many days would you like to stay ?",
+                "nodelx_resp": "how many days would you like to stay ?",
+                "pointer": "0,1,0,0,0,0",
+                "match": "1",
+                "constraint": "[hotel] internet no stars 3 name alpha - milton guest house people 6 [restaurant] food indian pricerange expensive area centre name saffron brasserie day saturday people 6 time 19:30",
+                "cons_delex": "[hotel] internet stars name people [restaurant] food pricerange area name day people time",
+                "sys_act": "[hotel] [request] bookstay",
+                "turn_num": 5,
+                "turn_domain": "[hotel]"
+            },
+            {
+                "user": "2 nights , starting the same day as the reservation .",
+                "user_delex": "[value_bookstay] nights , starting the same day as the reservation [value_bookday]",
+                "user_act": "[hotel]",
+                "resp": "i am sorry . it looks like they are full . would you like me to look for something else ?",
+                "nodelx_resp": "i am sorry . it looks like they are full . would you like me to look for something else ?",
+                "pointer": "0,1,0,0,1,0",
+                "match": "1",
+                "constraint": "[hotel] internet no stars 3 name alpha - milton guest house people 6 day saturday stay 2 [restaurant] food indian pricerange expensive area centre name saffron brasserie day saturday people 6 time 19:30",
+                "cons_delex": "[hotel] internet stars name people day stay [restaurant] food pricerange area name day people time",
+                "sys_act": "[hotel] [nobook]",
+                "turn_num": 6,
+                "turn_domain": "[hotel]"
+            },
+            {
+                "user": "yes please . is there something else available in that area ?",
+                "user_delex": "yes please . is there something else available in that area ?",
+                "user_act": "",
+                "resp": "i am sorry , it looks like that is the only [value_stars] star [value_type] in [value_area] , would you like me to look somewhere else ?",
+                "nodelx_resp": "i am sorry , it looks like that is the only 3 star hotel in that area , would you like me to look somewhere else ?",
+                "pointer": "0,1,0,0,0,0",
+                "match": "1",
+                "constraint": "[hotel] internet no stars 3 name alpha - milton guest house people 6 day saturday stay 2 [restaurant] food indian pricerange expensive area centre name saffron brasserie day saturday people 6 time 19:30",
+                "cons_delex": "[hotel] internet stars name people day stay [restaurant] food pricerange area name day people time",
+                "sys_act": "[hotel] [inform] area stars type [request] area",
+                "turn_num": 7,
+                "turn_domain": "[hotel]"
+            },
+            {
+                "user": "can we try for 1 night instead of 2 ? i 'll need the reference number please .",
+                "user_delex": "can we try for [value_bookstay] night instead of 2 ? i 'll need the reference number please .",
+                "user_act": "[hotel]",
+                "resp": "i was able to get [value_bookstay] night , the reference number is 9xvt8m5 t [value_reference]",
+                "nodelx_resp": "i was able to get 1 night , the reference number is 9xvt8m5 t .",
+                "pointer": "0,1,0,0,0,1",
+                "match": "1",
+                "constraint": "[hotel] internet no stars 3 name alpha - milton guest house people 6 day saturday stay 1 [restaurant] food indian pricerange expensive area centre name saffron brasserie day saturday people 6 time 19:30",
+                "cons_delex": "[hotel] internet stars name people day stay [restaurant] food pricerange area name day people time",
+                "sys_act": "[hotel] [offerbooked] bookstay reference",
+                "turn_num": 8,
+                "turn_domain": "[hotel]"
+            },
+            {
+                "user": "thank you so much !",
+                "user_delex": "thank you so much !",
+                "user_act": "",
+                "resp": "i am glad to help , you are welcome !",
+                "nodelx_resp": "i am glad to help , you are welcome !",
+                "pointer": "0,0,0,0,0,0",
+                "match": "",
+                "constraint": "[hotel] internet no stars 3 name alpha - milton guest house people 6 day saturday stay 1 [restaurant] food indian pricerange expensive area centre name saffron brasserie day saturday people 6 time 19:30",
+                "cons_delex": "[hotel] internet stars name people day stay [restaurant] food pricerange area name day people time",
+                "sys_act": "[general] [welcome]",
+                "turn_num": 9,
+                "turn_domain": "[general]"
+            }
+        ]
+    },
+    "mul0002.json": {
+        "goal": {
+            "hotel": {
+                "fail_info": {},
+                "info": {
+                    "name": "bridge guest house"
+                },
+                "reqt": [
+                    "area",
+                    "internet",
+                    "stars"
+                ]
+            },
+            "restaurant": {
+                "fail_info": {
+                    "area": "centre",
+                    "pricerange": "cheap"
+                },
+                "info": {
+                    "area": "centre",
+                    "pricerange": "moderate"
+                },
+                "reqt": [
+                    "food"
+                ]
+            }
+        },
+        "log": [
+            {
+                "user": "looking for a place to eat in the city center .",
+                "user_delex": "looking for a place to eat in the city [value_area] .",
+                "user_act": "[restaurant] area",
+                "resp": "there are [value_choice] options to choose from . do you have a type of food in mind ?",
+                "nodelx_resp": "there are many options to choose from . do you have a type of food in mind ?",
+                "pointer": "0,0,0,1,0,0",
+                "match": "69",
+                "constraint": "[restaurant] area centre",
+                "cons_delex": "[restaurant] area",
+                "sys_act": "[restaurant] [inform] choice [request] food",
+                "turn_num": 0,
+                "turn_domain": "[restaurant]"
+            },
+            {
+                "user": "i would like to have some chinese food .",
+                "user_delex": "i would like to have some chinese food [value_food]",
+                "user_act": "[restaurant] food",
+                "resp": "that narrows down the restaurant choices to [value_choice] . is there a price range you would like to stay in ?",
+                "nodelx_resp": "that narrows down the restaurant choices to 10 . is there a price range you would like to stay in ?",
+                "pointer": "0,0,0,1,0,0",
+                "match": "10",
+                "constraint": "[restaurant] area centre food chinese",
+                "cons_delex": "[restaurant] area food",
+                "sys_act": "[restaurant] [inform] choice [request] pricerange",
+                "turn_num": 1,
+                "turn_domain": "[restaurant]"
+            },
+            {
+                "user": "i am looking for a moderate -ly priced place to eat , i am also looking to book a room in the bridge guest house hotel .",
+                "user_delex": "i am looking for a moderate -ly priced place to eat , i am also looking to book a room in the bridge guest house hotel [value_name]",
+                "user_act": "[hotel] name [restaurant] pricerange",
+                "resp": "which dates will you be staying at the [value_name] ?",
+                "nodelx_resp": "which dates will you be staying at the bridge guest room house ?",
+                "pointer": "0,1,0,0,0,0",
+                "match": "1",
+                "constraint": "[hotel] name bridge guest house [restaurant] area centre food chinese pricerange moderate",
+                "cons_delex": "[hotel] name [restaurant] area food pricerange",
+                "sys_act": "[restaurant] [request] bookday bookstay [hotel] [inform] name",
+                "turn_num": 2,
+                "turn_domain": "[restaurant] [hotel]"
+            },
+            {
+                "user": "before i commit i have a few questions . what area is the hotel located in ?",
+                "user_delex": "before i commit i have a few questions . what area is the [value_type] located in ?",
+                "user_act": "",
+                "resp": "the hotel is in the [value_area] area .",
+                "nodelx_resp": "the hotel is in the south area .",
+                "pointer": "0,1,0,0,0,0",
+                "match": "1",
+                "constraint": "[hotel] name bridge guest house [restaurant] area centre food chinese pricerange moderate",
+                "cons_delex": "[hotel] name [restaurant] area food pricerange",
+                "sys_act": "[hotel] [inform] area",
+                "turn_num": 3,
+                "turn_domain": "[hotel]"
+            },
+            {
+                "user": "does it provide free parking ?",
+                "user_delex": "does it provide free parking ?",
+                "user_act": "[hotel] parking",
+                "resp": "yes , free parking and free wifi !",
+                "nodelx_resp": "yes , free parking and free wifi !",
+                "pointer": "0,1,0,0,0,0",
+                "match": "1",
+                "constraint": "[hotel] name bridge guest house parking yes [restaurant] area centre food chinese pricerange moderate",
+                "cons_delex": "[hotel] name parking [restaurant] area food pricerange",
+                "sys_act": "[hotel] [inform] internet parking",
+                "turn_num": 4,
+                "turn_domain": "[hotel]"
+            },
+            {
+                "user": "ok , 2 questions . 1 - what are the moderate -ly priced restaurant -s in the center of town , and 2 - how many stars does the bridge guest house have ? thanks !",
+                "user_delex": "ok , 2 questions . 1 - what are the moderate -ly priced restaurant -s in the center of town , and 2 - how many stars does the bridge guest house have ? thanks [value_area]",
+                "user_act": "[restaurant] area pricerange",
+                "resp": "[value_name] is a [value_stars] star lodging .",
+                "nodelx_resp": "the bridge guest house is a 3 star lodging .",
+                "pointer": "0,1,0,0,0,0",
+                "match": "1",
+                "constraint": "[hotel] name bridge guest house parking yes [restaurant] area centre food chinese pricerange moderate",
+                "cons_delex": "[hotel] name parking [restaurant] area food pricerange",
+                "sys_act": "[hotel] [inform] name stars",
+                "turn_num": 5,
+                "turn_domain": "[hotel]"
+            },
+            {
+                "user": "that was all the questions i had . thank you very much for helping me .",
+                "user_delex": "that was all the questions i had . thank you very much for helping me .",
+                "user_act": "",
+                "resp": "i am happy i could help you today . have a wonderful day !",
+                "nodelx_resp": "i am happy i could help you today . have a wonderful day !",
+                "pointer": "0,0,0,0,0,0",
+                "match": "",
+                "constraint": "[hotel] name bridge guest house parking yes [restaurant] area centre food chinese pricerange moderate",
+                "cons_delex": "[hotel] name parking [restaurant] area food pricerange",
+                "sys_act": "[general] [bye]",
+                "turn_num": 6,
+                "turn_domain": "[general]"
+            }
+        ]
+    },
+    "mul0003.json": {
+        "goal": {
+            "hotel": {
+                "book": {
+                    "day": "sunday",
+                    "invalid": false,
+                    "people": "6",
+                    "stay": "4"
+                },
+                "fail_book": {},
+                "fail_info": {},
+                "info": {
+                    "internet": "yes",
+                    "parking": "yes",
+                    "pricerange": "cheap",
+                    "type": "guesthouse"
+                }
+            },
+            "restaurant": {
+                "book": {
+                    "day": "sunday",
+                    "invalid": false,
+                    "people": "6",
+                    "time": "18:45"
+                },
+                "fail_book": {},
+                "fail_info": {},
+                "info": {
+                    "area": "centre",
+                    "food": "italian",
+                    "pricerange": "cheap"
+                }
+            }
+        },
+        "log": [
+            {
+                "user": "i am looking for a place to stay . it needs to be a guest house and include free wifi .",
+                "user_delex": "i am looking for a place to stay . it needs to be a guest house and include free wifi [value_type]",
+                "user_act": "[hotel] internet type",
+                "resp": "there are [value_choice] [value_type] that meet your needs . would you like to narrow your search by area and and or price range ?",
+                "nodelx_resp": "there are 23 hotel -s that meet your needs . would you like to narrow your search by area and and or price range ?",
+                "pointer": "0,0,0,1,0,0",
+                "match": "23",
+                "constraint": "[hotel] internet yes type guest house",
+                "cons_delex": "[hotel] internet type",
+                "sys_act": "[hotel] [inform] choice type [request] area pricerange",
+                "turn_num": 0,
+                "turn_domain": "[hotel]"
+            },
+            {
+                "user": "i would like for it to be cheap and include free parking .",
+                "user_delex": "i would like for it to be [value_pricerange] and include free parking .",
+                "user_act": "[hotel] parking pricerange",
+                "resp": "there are [value_choice] [value_type] in [value_area] area -s . what part of town are you hoping for ?",
+                "nodelx_resp": "there are 9 guest house hotel -s in various area -s . what part of town are you hoping for ?",
+                "pointer": "0,0,0,1,0,0",
+                "match": "9",
+                "constraint": "[hotel] internet yes type guest house parking yes pricerange cheap",
+                "cons_delex": "[hotel] internet type parking pricerange",
+                "sys_act": "[hotel] [inform] area choice type [request] area",
+                "turn_num": 1,
+                "turn_domain": "[hotel]"
+            },
+            {
+                "user": "nothing in particular . i just need it booked for 6 people for a total of 4 nights starting from sunday . i would also like the reference number , please .",
+                "user_delex": "nothing in particular . i just need it booked for 6 people for a total of 4 nights starting from sunday . i would also like the reference number , please [value_bookday]",
+                "user_act": "[hotel]",
+                "resp": "sure ! we will book you in a [value_type] with [value_stars] stars . the reservation will be for [value_people] people for [value_stay] nights . how many rooms would you like to reserve ?",
+                "nodelx_resp": "sure ! we will book you in a hotel with 4 stars . the reservation will be for 6 people for 4 nights . how many rooms would you like to reserve ?",
+                "pointer": "0,0,0,1,0,0",
+                "match": "9",
+                "constraint": "[hotel] internet yes type guest house parking yes pricerange cheap day sunday people 6 stay 4",
+                "cons_delex": "[hotel] internet type parking pricerange day people stay",
+                "sys_act": "[hotel] [inform] stars type [offerbook] bookpeople bookstay [request] bookpeople",
+                "turn_num": 2,
+                "turn_domain": "[hotel]"
+            },
+            {
+                "user": "well , for 6 people i suppose i will be needing 3 rooms , for 4 nights , starting sunday .",
+                "user_delex": "well , for 6 people i suppose i will be needing 3 rooms , for 4 nights , starting sunday [value_bookday]",
+                "user_act": "[hotel]",
+                "resp": "you are booked at the [value_name] , [value_address] , for 6 people for 4 nights tarting [value_day] . your reference number is jxvkz7kv .",
+                "nodelx_resp": "you are booked at the alexander bed and breakfast , 517a coldham lane , for 6 people for 4 nights tarting sunday . your reference number is jxvkz7kv .",
+                "pointer": "0,0,0,1,0,1",
+                "match": "9",
+                "constraint": "[hotel] internet yes type guest house parking yes pricerange cheap day sunday people 6 stay 4",
+                "cons_delex": "[hotel] internet type parking pricerange day people stay",
+                "sys_act": "[hotel] [offerbooked] bookday bookpeople bookstay name reference address",
+                "turn_num": 3,
+                "turn_domain": "[hotel]"
+            },
+            {
+                "user": "thank you ! i am also looking for a restaurant . ideally an italian place in the same price range in the centre .",
+                "user_delex": "thank you ! i am also looking for a restaurant . ideally an italian place in the same price range in the centre [value_area]",
+                "user_act": "[restaurant] area food pricerange",
+                "resp": "i found [value_name] restaurant would you like to book that ?",
+                "nodelx_resp": "i found ask restaurant would you like to book that ?",
+                "pointer": "0,0,1,0,0,0",
+                "match": "3",
+                "constraint": "[hotel] internet yes type guest house parking yes pricerange cheap day sunday people 6 stay 4 name alexander bed and breakfast [restaurant] area centre food italian pricerange cheap",
+                "cons_delex": "[hotel] internet type parking pricerange day people stay name [restaurant] area food pricerange",
+                "sys_act": "[hotel] [offerbook] name",
+                "turn_num": 4,
+                "turn_domain": "[hotel] [restaurant]"
+            },
+            {
+                "user": "is the name of the restaurant ask restaurant ?",
+                "user_delex": "is the name of the restaurant [value_name] restaurant ?",
+                "user_act": "[restaurant] name",
+                "resp": "yes , the restaurant is called [value_name] . would you like to book a table there ?",
+                "nodelx_resp": "yes , the restaurant is called ask restaurant . would you like to book a table there ?",
+                "pointer": "0,0,1,0,0,0",
+                "match": "3",
+                "constraint": "[hotel] internet yes type guest house parking yes pricerange cheap day sunday people 6 stay 4 name alexander bed and breakfast [restaurant] area centre food italian pricerange cheap name ask",
+                "cons_delex": "[hotel] internet type parking pricerange day people stay name [restaurant] area food pricerange name",
+                "sys_act": "[restaurant] [inform] name [offerbook]",
+                "turn_num": 5,
+                "turn_domain": "[restaurant]"
+            },
+            {
+                "user": "yes . book it for the same group of people on the same day at 18:45 . can i get the reference number please ?",
+                "user_delex": "yes . book it for the same group of people on the same day at 18:45 . can i get the reference number please [value_booktime]",
+                "user_act": "[restaurant]",
+                "resp": "great ! your booking for [value_people] people at the restaurant [value_name] on [value_day] at [value_time] was successful ! your reference number is [value_reference] .",
+                "nodelx_resp": "great ! your booking for 6 people at the restaurant ask on sunday at 18:45 was successful ! your reference number is y2y8qyby .",
+                "pointer": "0,0,1,0,0,1",
+                "match": "3",
+                "constraint": "[hotel] internet yes type guest house parking yes pricerange cheap day sunday people 6 stay 4 name alexander bed and breakfast [restaurant] area centre food italian pricerange cheap name ask day sunday people 6 time 18:45",
+                "cons_delex": "[hotel] internet type parking pricerange day people stay name [restaurant] area food pricerange name day people time",
+                "sys_act": "[restaurant] [offerbooked] bookday bookpeople booktime name reference",
+                "turn_num": 6,
+                "turn_domain": "[restaurant]"
+            },
+            {
+                "user": "i am all set . thank you .",
+                "user_delex": "i am all set . thank you .",
+                "user_act": "",
+                "resp": "thank you for using the cambridge towneinfo help desk !",
+                "nodelx_resp": "thank you for using the cambridge towneinfo help desk !",
+                "pointer": "0,0,0,0,0,0",
+                "match": "",
+                "constraint": "[hotel] internet yes type guest house parking yes pricerange cheap day sunday people 6 stay 4 name alexander bed and breakfast [restaurant] area centre food italian pricerange cheap name ask day sunday people 6 time 18:45",
+                "cons_delex": "[hotel] internet type parking pricerange day people stay name [restaurant] area food pricerange name day people time",
+                "sys_act": "[general] [bye]",
+                "turn_num": 7,
+                "turn_domain": "[general]"
+            }
+        ]
+    },
+    "mul0004.json": {
+        "goal": {
+            "hotel": {
+                "fail_info": {},
+                "info": {
+                    "internet": "yes",
+                    "parking": "yes",
+                    "stars": "0",
+                    "type": "guesthouse"
+                },
+                "reqt": [
+                    "phone",
+                    "pricerange",
+                    "area"
+                ]
+            },
+            "restaurant": {
+                "book": {
+                    "day": "wednesday",
+                    "invalid": false,
+                    "people": "4",
+                    "time": "15:00"
+                },
+                "fail_book": {},
+                "fail_info": {
+                    "name": "hakka"
+                },
+                "info": {
+                    "name": "nandos city centre"
+                }
+            }
+        },
+        "log": [
+            {
+                "user": "i am looking for a restaurant in cambridge called nandos city centre .",
+                "user_delex": "i am looking for a restaurant in cambridge called nandos city centre [value_name]",
+                "user_act": "[restaurant] name",
+                "resp": "[value_name] [value_area] is located at [value_address] .",
+                "nodelx_resp": "nandos city centre is located at 33 - 34 saint andrews street .",
+                "pointer": "0,1,0,0,0,0",
+                "match": "1",
+                "constraint": "[restaurant] name nandos city centre",
+                "cons_delex": "[restaurant] name",
+                "sys_act": "[restaurant] [inform] address area name",
+                "turn_num": 0,
+                "turn_domain": "[restaurant]"
+            },
+            {
+                "user": "i want to book a table for 4 people at 15:00 on wednesday . please give me a reference number .",
+                "user_delex": "i want to book a table for [value_bookpeople] people at [value_booktime] on [value_bookday] . please give me a reference number .",
+                "user_act": "[restaurant]",
+                "resp": "sure thing ! your reference number is [value_reference] . can i help you with anything else today ?",
+                "nodelx_resp": "sure thing ! your reference number is lyienp77 . can i help you with anything else today ?",
+                "pointer": "0,1,0,0,0,1",
+                "match": "1",
+                "constraint": "[restaurant] name nandos city centre day wednesday people 4 time 15:00",
+                "cons_delex": "[restaurant] name day people time",
+                "sys_act": "[restaurant] [offerbooked] reference [general] [reqmore]",
+                "turn_num": 1,
+                "turn_domain": "[restaurant]"
+            },
+            {
+                "user": "i need to find a guest house style hotel please .",
+                "user_delex": "i need to find a [value_type] style hotel please .",
+                "user_act": "[hotel] type",
+                "resp": "the [value_name] is a [value_type] in the [value_area] area .",
+                "nodelx_resp": "the a and b is a guest house style hotel in the east area .",
+                "pointer": "0,0,0,1,0,0",
+                "match": "24",
+                "constraint": "[hotel] type guest house [restaurant] name nandos city centre day wednesday people 4 time 15:00",
+                "cons_delex": "[hotel] type [restaurant] name day people time",
+                "sys_act": "[hotel] [inform] area name type",
+                "turn_num": 2,
+                "turn_domain": "[hotel]"
+            },
+            {
+                "user": "what is its star rating ? i am looking for a place with a star of 0 .",
+                "user_delex": "what is its star rating ? i am looking for a place with a star of 0 [value_stars]",
+                "user_act": "[hotel] stars",
+                "resp": "i have results for [value_choice] [value_type] with [value_stars] star rating -s , 1 is in the [value_area] and 1 is in the [value_area] . which area do you prefer ?",
+                "nodelx_resp": "i have results for 2 guest house with 0 star rating -s , 1 is in the north and 1 is in the centre . which area do you prefer ?",
+                "pointer": "0,0,1,0,0,0",
+                "match": "2",
+                "constraint": "[hotel] type guest house stars 0 [restaurant] name nandos city centre day wednesday people 4 time 15:00",
+                "cons_delex": "[hotel] type stars [restaurant] name day people time",
+                "sys_act": "[hotel] [select] area choice stars type",
+                "turn_num": 3,
+                "turn_domain": "[hotel]"
+            },
+            {
+                "user": "which 1 has free parking and wifi ? i will need a phone number , price range and area as well please .",
+                "user_delex": "which 1 has free parking and wifi ? i will need a phone number , price range and area as well please .",
+                "user_act": "[hotel] internet parking",
+                "resp": "the [value_name] [value_area] has parking and wifi . it is in the north area . would you like to book this hotel ?",
+                "nodelx_resp": "the city centre north bed and breakfast has parking and wifi . it is in the north area . would you like to book this hotel ?",
+                "pointer": "0,0,1,0,0,0",
+                "match": "2",
+                "constraint": "[hotel] type guest house stars 0 internet yes parking yes [restaurant] name nandos city centre day wednesday people 4 time 15:00",
+                "cons_delex": "[hotel] type stars internet parking [restaurant] name day people time",
+                "sys_act": "[hotel] [inform] area internet name parking [offerbook]",
+                "turn_num": 4,
+                "turn_domain": "[hotel]"
+            },
+            {
+                "user": "i do n't want a booking . just give me the phone number and price range , please .",
+                "user_delex": "i do n't want a booking . just give me the phone number and price range , please .",
+                "user_act": "",
+                "resp": "the [value_name] has a [value_price] price range . it is phone number is [value_phone] .",
+                "nodelx_resp": "the city centre north bed and breakfast has a cheap price range . it is phone number is 01223312843 .",
+                "pointer": "0,0,1,0,0,0",
+                "match": "2",
+                "constraint": "[hotel] type guest house stars 0 internet yes parking yes [restaurant] name nandos city centre day wednesday people 4 time 15:00",
+                "cons_delex": "[hotel] type stars internet parking [restaurant] name day people time",
+                "sys_act": "[hotel] [inform] name phone pricerange",
+                "turn_num": 5,
+                "turn_domain": "[hotel]"
+            },
+            {
+                "user": "that is all i need . thank you !",
+                "user_delex": "that is all i need . thank you !",
+                "user_act": "",
+                "resp": "you are welcome . are you sure i ca n't help you with transportation between sites ?",
+                "nodelx_resp": "you are welcome . are you sure i ca n't help you with transportation between sites ?",
+                "pointer": "0,0,0,0,0,0",
+                "match": "",
+                "constraint": "[hotel] type guest house stars 0 internet yes parking yes [restaurant] name nandos city centre day wednesday people 4 time 15:00",
+                "cons_delex": "[hotel] type stars internet parking [restaurant] name day people time",
+                "sys_act": "[general] [welcome] [reqmore]",
+                "turn_num": 6,
+                "turn_domain": "[general]"
+            },
+            {
+                "user": "i am sure . thank you so much .",
+                "user_delex": "i am sure . thank you so much .",
+                "user_act": "",
+                "resp": "you are welcome . have a good day",
+                "nodelx_resp": "you are welcome . have a good day",
+                "pointer": "0,0,0,0,0,0",
+                "match": "",
+                "constraint": "[hotel] type guest house stars 0 internet yes parking yes [restaurant] name nandos city centre day wednesday people 4 time 15:00",
+                "cons_delex": "[hotel] type stars internet parking [restaurant] name day people time",
+                "sys_act": "[general] [welcome] [bye]",
+                "turn_num": 7,
+                "turn_domain": "[general]"
+            }
+        ]
+    }
+}

@@ -1,0 +1,129 @@
+- service_name: hotel
+  description: hotel reservations and vacation stays
+  slots:
+  - name: hotel-pricerange
+    description: price budget of the hotel
+    possible_values:
+    - expensive
+    - cheap
+    - moderate
+    is_categorical: true
+    is_informable: true
+    is_requestable: true
+  - name: hotel-accommodation_type
+    description: what is the type of the hotel
+    possible_values:
+    - guesthouse
+    - guest house
+    - hotel
+    is_categorical: true
+    is_informable: true
+    is_requestable: false
+  - name: hotel-parking
+    description: whether the hotel has parking
+    possible_values:
+    - free
+    - 'no'
+    - 'yes'
+    is_categorical: true
+    is_informable: true
+    is_requestable: true
+  - name: hotel-day
+    description: day of the hotel booking
+    possible_values:
+    - monday
+    - tuesday
+    - wednesday
+    - thursday
+    - friday
+    - saturday
+    - sunday
+    is_categorical: true
+    is_informable: true
+    is_requestable: false
+  - name: hotel-people
+    description: number of people for the hotel booking
+    possible_values:
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+    - '5'
+    - '6'
+    - '7'
+    - '8'
+    is_categorical: true
+    is_informable: true
+    is_requestable: false
+  - name: hotel-stay
+    description: length of stay at the hotel
+    possible_values:
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+    - '5'
+    - '6'
+    - '7'
+    - '8'
+    is_categorical: true
+    is_informable: true
+    is_requestable: false
+  - name: hotel-stars
+    description: star rating of the hotel
+    possible_values:
+    - '0'
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+    - '5'
+    is_categorical: true
+    is_informable: true
+    is_requestable: true
+  - name: hotel-internet
+    description: whether the hotel has internet
+    possible_values:
+    - free
+    - 'no'
+    - 'yes'
+    is_categorical: true
+    is_informable: true
+    is_requestable: true
+  - name: hotel-name
+    description: name of the hotel
+    possible_values: []
+    is_categorical: false
+    is_informable: true
+    is_requestable: false
+  - name: hotel-area
+    description: area or place of the hotel
+    possible_values:
+    - centre
+    - east
+    - north
+    - south
+    - west
+    is_categorical: true
+    is_informable: true
+    is_requestable: true
+  - name: hotel-address
+    description: address of the hotel
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  - name: hotel-phone
+    description: phone number of the hotel
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  - name: hotel-postcode
+    description: postal code of the hotel
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  - name: hotel-reference
+    description: reference number of the hotel booking
+    is_categorical: false
+    is_informable: false
+    is_requestable: true

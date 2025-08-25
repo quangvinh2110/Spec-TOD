@@ -1,0 +1,749 @@
+- service_name: hotel
+  description: hotel reservations and vacation stays
+  slots:
+  - name: hotel-pricerange
+    description: price budget of the hotel
+    possible_values:
+    - expensive
+    - cheap
+    - moderate
+    is_categorical: true
+    is_informable: true
+    is_requestable: true
+  - name: hotel-accommodation_type
+    description: what is the type of the hotel
+    possible_values:
+    - guesthouse
+    - guest house
+    - hotel
+    is_categorical: true
+    is_informable: true
+    is_requestable: false
+  - name: hotel-parking
+    description: whether the hotel has parking
+    possible_values:
+    - free
+    - 'no'
+    - 'yes'
+    is_categorical: true
+    is_informable: true
+    is_requestable: true
+  - name: hotel-day
+    description: day of the hotel booking
+    possible_values:
+    - monday
+    - tuesday
+    - wednesday
+    - thursday
+    - friday
+    - saturday
+    - sunday
+    is_categorical: true
+    is_informable: true
+    is_requestable: false
+  - name: hotel-people
+    description: number of people for the hotel booking
+    possible_values:
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+    - '5'
+    - '6'
+    - '7'
+    - '8'
+    is_categorical: true
+    is_informable: true
+    is_requestable: false
+  - name: hotel-stay
+    description: length of stay at the hotel
+    possible_values:
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+    - '5'
+    - '6'
+    - '7'
+    - '8'
+    is_categorical: true
+    is_informable: true
+    is_requestable: false
+  - name: hotel-stars
+    description: star rating of the hotel
+    possible_values:
+    - '0'
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+    - '5'
+    is_categorical: true
+    is_informable: true
+    is_requestable: true
+  - name: hotel-internet
+    description: whether the hotel has internet
+    possible_values:
+    - free
+    - 'no'
+    - 'yes'
+    is_categorical: true
+    is_informable: true
+    is_requestable: true
+  - name: hotel-name
+    description: name of the hotel
+    possible_values: []
+    is_categorical: false
+    is_informable: true
+    is_requestable: false
+  - name: hotel-area
+    description: area or place of the hotel
+    possible_values:
+    - centre
+    - east
+    - north
+    - south
+    - west
+    is_categorical: true
+    is_informable: true
+    is_requestable: true
+  - name: hotel-address
+    description: address of the hotel
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  - name: hotel-phone
+    description: phone number of the hotel
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  - name: hotel-postcode
+    description: postal code of the hotel
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  - name: hotel-reference
+    description: reference number of the hotel booking
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  intents:
+  - name: find_hotel
+    description: search for a hotel to stay in
+    is_transactional: false
+    required_slots: []
+    optional_slots:
+      hotel-pricerange: dontcare
+      hotel-type: dontcare
+      hotel-parking: dontcare
+      hotel-bookday: dontcare
+      hotel-bookpeople: dontcare
+      hotel-bookstay: dontcare
+      hotel-stars: dontcare
+      hotel-internet: dontcare
+      hotel-name: dontcare
+      hotel-area: dontcare
+  - name: book_hotel
+    description: book a hotel to stay in
+    is_transactional: true
+    required_slots: []
+    optional_slots:
+      hotel-pricerange: dontcare
+      hotel-type: dontcare
+      hotel-parking: dontcare
+      hotel-bookday: dontcare
+      hotel-bookpeople: dontcare
+      hotel-bookstay: dontcare
+      hotel-stars: dontcare
+      hotel-internet: dontcare
+      hotel-name: dontcare
+      hotel-area: dontcare
+  actions:
+  - name: inform
+    description: provide information about an entity (if multiple matched results
+      exist, choose one) in the form of [value_xxx] if requested by the user (required)
+  - name: request
+    description: inform the number of available offers ([value_choice]) and ask the
+      user for more preference on the requested entity to narrow down the search results
+      (optional)
+  - name: nooffer
+    description: inform the user that no suitable offer could be found
+  - name: recommend
+    description: recommend an offer to the user and provide its information (optional)
+  - name: select
+    description: ask the user to choose among available offers (optional)
+  - name: offerbook
+    description: offer an entity to the user (if multiple matched results exist, choose
+      one) and ask him if he would like to book it (required)
+  - name: offerbooked
+    description: inform the user that the offer has been successfully booked and provide
+      its booking information such as [value_name], [value_id], and [value_reference]
+      (required)
+  - name: nobook
+    description: inform the user that the offer can not be booked
+  - name: general
+    description: greet and welcome the user, inquire if there is anything else they
+      need help with after completing a requested service, and say goodbye to the
+      user if they have everything they need
+- service_name: train
+  description: find trains that take you to places and book train tickets
+  slots:
+  - name: train-arrive_by
+    description: arrival time of the train in the format of "HH:mm"
+    possible_values:
+    - '11:15'
+    - '13:20'
+    - '15:45'
+    is_categorical: false
+    is_informable: true
+    is_requestable: false
+  - name: train-departure
+    description: departure location of the train
+    possible_values:
+    - birmingham new street
+    - bishops stortford
+    - broxbourne
+    - cambridge
+    - ely
+    - kings lynn
+    - leicester
+    - london kings cross
+    - london liverpool street
+    - norwich
+    - peterborough
+    - stansted airport
+    - stevenage
+    is_categorical: true
+    is_informable: true
+    is_requestable: false
+  - name: train-day
+    description: day of the train
+    possible_values:
+    - monday
+    - tuesday
+    - wednesday
+    - thursday
+    - friday
+    - saturday
+    - sunday
+    is_categorical: true
+    is_informable: true
+    is_requestable: false
+  - name: train-people
+    description: how many train tickets you need
+    possible_values:
+    - '0'
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+    - '5'
+    - '6'
+    - '7'
+    - '8'
+    - '9'
+    - '10'
+    - '15'
+    is_categorical: true
+    is_informable: true
+    is_requestable: false
+  - name: train-leave_at_or_after
+    description: leaving at or after time for the train in the format of "HH:mm"
+    possible_values:
+    - 08:10
+    - '12:15'
+    - '15:50'
+    is_categorical: false
+    is_informable: true
+    is_requestable: false
+  - name: train-destination
+    description: destination of the train
+    possible_values:
+    - birmingham new street
+    - bishops stortford
+    - broxbourne
+    - cambridge
+    - ely
+    - kings lynn
+    - leicester
+    - london kings cross
+    - london liverpool street
+    - norwich
+    - peterborough
+    - stansted airport
+    - stevenage
+    is_categorical: true
+    is_informable: true
+    is_requestable: false
+  - name: train-trainid
+    description: id of the train
+    is_categorical: false
+    is_informable: false
+    is_requestable: false
+  - name: train-reference
+    description: reference number of the train booking
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  - name: train-price
+    description: price of the train
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  - name: train-duration
+    description: duration of the travel
+    is_categorical: false
+    is_informable: false
+    is_requestable: false
+  intents:
+  - name: find_train
+    description: search for trains that take you places
+    is_transactional: false
+    required_slots: []
+    optional_slots:
+      train-destination: dontcare
+      train-arriveby: dontcare
+      train-departure: dontcare
+      train-day: dontcare
+      train-bookpeople: dontcare
+      train-leaveat: dontcare
+  - name: book_train
+    description: book train tickets
+    is_transactional: true
+    required_slots: []
+    optional_slots:
+      train-destination: dontcare
+      train-arriveby: dontcare
+      train-departure: dontcare
+      train-day: dontcare
+      train-bookpeople: dontcare
+      train-leaveat: dontcare
+  actions:
+  - name: inform
+    description: provide information about an entity (if multiple matched results
+      exist, choose one) in the form of [value_xxx] if requested by the user (required)
+  - name: request
+    description: inform the number of available offers ([value_choice]) and ask the
+      user for more preference on the requested entity to narrow down the search results
+      (optional)
+  - name: nooffer
+    description: inform the user that no suitable offer could be found
+  - name: offerbook
+    description: offer an entity to the user (if multiple matched results exist, choose
+      one) and ask him if he would like to book it (required)
+  - name: offerbooked
+    description: inform the user that the offer has been successfully booked and provide
+      its booking information such as [value_name], [value_id], and [value_reference]
+      (required)
+  - name: select
+    description: ask the user to choose among available offers (optional)
+  - name: general
+    description: greet and welcome the user, inquire if there is anything else they
+      need help with after completing a requested service, and say goodbye to the
+      user if they have everything they need
+- service_name: attraction
+  description: find touristy stuff to do around you
+  slots:
+  - name: attraction-area
+    description: area to search for attractions
+    possible_values:
+    - centre
+    - east
+    - north
+    - south
+    - west
+    is_categorical: true
+    is_informable: true
+    is_requestable: true
+  - name: attraction-name
+    description: name of the attraction
+    possible_values: []
+    is_categorical: false
+    is_informable: true
+    is_requestable: false
+  - name: attraction-type
+    description: type of the attraction
+    possible_values:
+    - architecture
+    - boat
+    - cinema
+    - college
+    - concerthall
+    - entertainment
+    - museum
+    - multiple sports
+    - nightclub
+    - park
+    - swimmingpool
+    - theatre
+    is_categorical: true
+    is_informable: true
+    is_requestable: true
+  - name: attraction-entrancefee
+    description: how much is the entrance fee
+    is_categorical: false
+    is_informable: false
+    is_requestable: false
+  - name: attraction-openhours
+    description: open hours of the attraction
+    is_categorical: false
+    is_informable: false
+    is_requestable: false
+  - name: attraction-address
+    description: address of the attraction
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  - name: attraction-phone
+    description: phone number of the attraction
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  - name: attraction-postcode
+    description: postal code of the attraction
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  intents:
+  - name: find_attraction
+    description: search for places to see for leisure
+    is_transactional: false
+    required_slots: []
+    optional_slots:
+      attraction-area: dontcare
+      attraction-name: dontcare
+      attraction-type: dontcare
+  actions:
+  - name: inform
+    description: provide information about an entity (if multiple matched results
+      exist, choose one) in the form of [value_xxx] if requested by the user (required)
+  - name: request
+    description: inform the number of available offers ([value_choice]) and ask the
+      user for more preference on the requested entity to narrow down the search results
+      (optional)
+  - name: nooffer
+    description: inform the user that no suitable offer could be found
+  - name: recommend
+    description: recommend an offer to the user and provide its information (optional)
+  - name: select
+    description: ask the user to choose among available offers (optional)
+  - name: general
+    description: greet and welcome the user, inquire if there is anything else they
+      need help with after completing a requested service, and say goodbye to the
+      user if they have everything they need
+- service_name: restaurant
+  description: find places to dine and whet your appetite
+  slots:
+  - name: restaurant-pricerange
+    description: price budget for the restaurant
+    possible_values:
+    - cheap
+    - expensive
+    - moderate
+    is_categorical: true
+    is_informable: true
+    is_requestable: true
+  - name: restaurant-area
+    description: area or place of the restaurant
+    possible_values:
+    - centre
+    - east
+    - north
+    - south
+    - west
+    is_categorical: true
+    is_informable: true
+    is_requestable: true
+  - name: restaurant-food
+    description: the cuisine of the restaurant you are looking for
+    possible_values:
+    - chinese
+    - american
+    - mexican
+    - japanese
+    - european
+    - oceanian
+    is_categorical: false
+    is_informable: true
+    is_requestable: true
+  - name: restaurant-name
+    description: name of the restaurant
+    possible_values: []
+    is_categorical: false
+    is_informable: true
+    is_requestable: false
+  - name: restaurant-day
+    description: day of the restaurant booking
+    possible_values:
+    - monday
+    - tuesday
+    - wednesday
+    - thursday
+    - friday
+    - saturday
+    - sunday
+    is_categorical: true
+    is_informable: true
+    is_requestable: false
+  - name: restaurant-people
+    description: how many people for the restaurant reservation
+    possible_values:
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+    - '5'
+    - '6'
+    - '7'
+    - '8'
+    is_categorical: true
+    is_informable: true
+    is_requestable: false
+  - name: restaurant-time
+    description: time of the restaurant booking in the format of "HH:mm"
+    possible_values:
+    - '12:00'
+    - '13:10'
+    - '18:30'
+    is_categorical: false
+    is_informable: true
+    is_requestable: false
+  - name: restaurant-address
+    description: address of the restaurant
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  - name: restaurant-phone
+    description: phone number of the restaurant
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  - name: restaurant-postcode
+    description: postal code of the restaurant
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  - name: restaurant-reference
+    description: reference number of the restaurant booking
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  intents:
+  - name: find_restaurant
+    description: search for places to wine and dine
+    is_transactional: false
+    required_slots: []
+    optional_slots:
+      restaurant-pricerange: dontcare
+      restaurant-area: dontcare
+      restaurant-food: dontcare
+      restaurant-name: dontcare
+      restaurant-bookday: dontcare
+      restaurant-bookpeople: dontcare
+      restaurant-booktime: dontcare
+  - name: book_restaurant
+    description: book a table at a restaurant
+    is_transactional: true
+    required_slots: []
+    optional_slots:
+      restaurant-pricerange: dontcare
+      restaurant-area: dontcare
+      restaurant-food: dontcare
+      restaurant-name: dontcare
+      restaurant-bookday: dontcare
+      restaurant-bookpeople: dontcare
+      restaurant-booktime: dontcare
+  actions:
+  - name: inform
+    description: provide information about an entity (if multiple matched results
+      exist, choose one) in the form of [value_xxx] if requested by the user (required)
+  - name: request
+    description: inform the number of available offers ([value_choice]) and ask the
+      user for more preference on the requested entity to narrow down the search results
+      (optional)
+  - name: nooffer
+    description: inform the user that no suitable offer could be found
+  - name: recommend
+    description: recommend an offer to the user and provide its information (optional)
+  - name: select
+    description: ask the user to choose among available offers (optional)
+  - name: offerbook
+    description: offer an entity to the user (if multiple matched results exist, choose
+      one) and ask him if he would like to book it (required)
+  - name: offerbooked
+    description: inform the user that the offer has been successfully booked and provide
+      its booking information such as [value_name], [value_id], and [value_reference]
+      (required)
+  - name: nobook
+    description: inform the user that the offer can not be booked
+  - name: general
+    description: greet and welcome the user, inquire if there is anything else they
+      need help with after completing a requested service, and say goodbye to the
+      user if they have everything they need
+- service_name: hospital
+  description: making you feel better when you are ill
+  slots:
+  - name: hospital-department
+    description: type of medical care
+    possible_values: []
+    is_categorical: false
+    is_informable: true
+    is_requestable: false
+  - name: hospital-address
+    description: address of the hospital
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  - name: hospital-phone
+    description: phone number of the hospital
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  - name: hospital-postcode
+    description: postal code of the hospital
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  intents:
+  - name: find_hospital
+    description: search for a medical facility or a doctor
+    is_transactional: false
+    required_slots: []
+    optional_slots:
+      hospital-department: dontcare
+  actions:
+  - name: inform
+    description: provide information about an entity (if multiple matched results
+      exist, choose one) in the form of [value_xxx] if requested by the user (required)
+  - name: request
+    description: inform the number of available offers ([value_choice]) and ask the
+      user for more preference on the requested entity to narrow down the search results
+      (optional)
+  - name: general
+    description: greet and welcome the user, inquire if there is anything else they
+      need help with after completing a requested service, and say goodbye to the
+      user if they have everything they need
+- service_name: taxi
+  description: book taxis to travel between places
+  slots:
+  - name: taxi-leave_at_or_after
+    description: leaving at or after time of taxi in the format of "HH:mm"
+    possible_values:
+    - 08:10
+    - '12:15'
+    - '15:50'
+    is_categorical: false
+    is_informable: true
+    is_requestable: false
+  - name: taxi-destination
+    description: destination of taxi (this should be the full name of the destination
+      rather than its specific street address)
+    possible_values: []
+    is_categorical: false
+    is_informable: true
+    is_requestable: false
+  - name: taxi-departure
+    description: departure location of taxi (this should be the full name of the location
+      rather than its specific street address)
+    possible_values: []
+    is_categorical: false
+    is_informable: true
+    is_requestable: false
+  - name: taxi-arrive_by
+    description: arrival time of taxi in the format of "HH:mm"
+    possible_values:
+    - '11:15'
+    - '13:20'
+    - '15:45'
+    is_categorical: false
+    is_informable: true
+    is_requestable: false
+  - name: taxi-type
+    description: car type of the taxi
+    is_categorical: false
+    is_informable: false
+    is_requestable: false
+  - name: taxi-phone
+    description: phone number of the taxi
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  intents:
+  - name: book_taxi
+    description: book taxis to travel between places
+    is_transactional: true
+    required_slots: []
+    optional_slots:
+      taxi-leaveat: dontcare
+      taxi-destination: dontcare
+      taxi-departure: dontcare
+      taxi-arriveby: dontcare
+  actions:
+  - name: inform
+    description: provide information about an entity (if multiple matched results
+      exist, choose one) in the form of [value_xxx] if requested by the user (required)
+  - name: request
+    description: inform the number of available offers ([value_choice]) and ask the
+      user for more preference on the requested entity to narrow down the search results
+      (optional)
+  - name: general
+    description: greet and welcome the user, inquire if there is anything else they
+      need help with after completing a requested service, and say goodbye to the
+      user if they have everything they need
+- service_name: police
+  description: police station
+  slots:
+  - name: police-address
+    description: address of the police station
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  - name: police-phone
+    description: phone number of the police station
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  - name: police-postcode
+    description: postal code of the police station
+    is_categorical: false
+    is_informable: false
+    is_requestable: true
+  - name: police-name
+    description: name of the police station
+    possible_values:
+    - parkside police station
+    is_categorical: true
+    is_informable: false
+    is_requestable: false
+  intents:
+  - name: police
+    description: search for police station
+    is_transactional: false
+    required_slots: []
+    optional_slots:
+      police-name: dontcare
+  actions:
+  - name: inform
+    description: provide information about an entity (if multiple matched results
+      exist, choose one) in the form of [value_xxx] if requested by the user (required)
+  - name: request
+    description: inform the number of available offers ([value_choice]) and ask the
+      user for more preference on the requested entity to narrow down the search results
+      (optional)
+  - name: general
+    description: greet and welcome the user, inquire if there is anything else they
+      need help with after completing a requested service, and say goodbye to the
+      user if they have everything they need
+- service_name: general
+  slots: []
+  intent: []
+  actions:
+  - name: greet
+    description: greet the user
+  - name: welcome
+    description: welcome the user
+  - name: reqmore
+    description: inquire if there is anything else they need help with after completing
+      a requested service
+  - name: bye
+    description: say goodbye to the user if they have everything they need
