@@ -2,7 +2,7 @@ import json
 import requests
 import os
 
-url = "http://10.254.138.189:8030/generate"
+url = "https://your/tgi/endpoint"+"/generate"
 
 prompt = '''<|begin_of_text|><|start_header_id|>system<|end_header_id|>
 

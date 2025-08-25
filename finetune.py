@@ -10,13 +10,11 @@
 import os
 import sys
 from typing import List
-import datetime
 
 import fire
 import torch
 import transformers
 from datasets import load_dataset
-import wandb
 
 from transformers import (
     TrainerCallback,
@@ -25,7 +23,7 @@ from transformers import (
     TrainerControl,
 )
 from transformers.trainer_utils import PREFIX_CHECKPOINT_DIR
-from transformers import LlamaForCausalLM, LlamaTokenizer,AutoTokenizer
+from transformers import LlamaForCausalLM,AutoTokenizer
 from peft import (
     LoraConfig,
     get_peft_model,
@@ -33,7 +31,6 @@ from peft import (
     set_peft_model_state_dict,
 )
 
-from chatbots.conversation import Conversation
 from src.utils import fc_prefix, fc_suffix
 
 
